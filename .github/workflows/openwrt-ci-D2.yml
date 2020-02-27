@@ -7,11 +7,16 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 # 
 
-name: OpenWrt-CI
+name: OpenWrt-NewWifi-D2-Firmware
 
 on:
+  push:
+    branches: 
+      - master
+    paths:
+      - 'd2_config/**'
   schedule:
-    - cron: 0 20 * * *
+    - cron: 0 20 * * 1,5
 
 jobs:
 
@@ -54,13 +59,18 @@ jobs:
           ./scripts/feeds install -a
 
       - name: Generate configuration file
-        run: make defconfig
+        run: |
+          rm -f ./.config*
+          cp ./d2_config/.config ./
+          make defconfig
+          ls -la
 
       - name: Make download
         run: |
           make download -j8
-          find dl -size -1024c -exec rm -f {} \;
-
+          find ./dl/ -size -1024c -exec rm -f {} \;
+          df -h
+          
       - name: Compile firmware
         run: |
           make -j$(nproc) || make -j1 V=s
@@ -72,12 +82,12 @@ jobs:
           du -h --max-depth=1 ./ --exclude=build_dir --exclude=bin
           du -h --max-depth=1 ./build_dir
           du -h --max-depth=1 ./bin
-
+          
       - name: Prepare artifact
         run: find ./bin/targets/ -type d -name "packages" | xargs rm -rf {}
 
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt firmware
+          name: OpenWrt NewWifi D2 firmware
           path: ./bin/targets/
