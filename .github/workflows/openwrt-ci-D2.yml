@@ -62,8 +62,8 @@ jobs:
       - name: Generate configuration file
         run: |
           rm -f ./.config*
-          cp ./target_config/.config_d2 ./.config
           make defconfig
+          cp ./target_config/.config_d2 ./.config
           ls -la
           sed -n 242,247p ./.config
 
