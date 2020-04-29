@@ -90,5 +90,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt NewWifi Pi-4B firmware
+          name: OpenWrt Raspberry Pi-4B firmware
           path: ./bin/targets/
