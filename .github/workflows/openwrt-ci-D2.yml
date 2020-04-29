@@ -65,6 +65,7 @@ jobs:
           cp ./target_config/.config_d2 ./.config
           make defconfig
           ls -la
+          sed -n 242,247p ./.config
 
       - name: Make download
         run: |
