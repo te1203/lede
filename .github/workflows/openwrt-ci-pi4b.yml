@@ -62,7 +62,7 @@ jobs:
       - name: Generate configuration file
         run: |
           rm -f ./.config*
-          cp ./target_config/.config_pi_4b ./
+          cp ./target_config/.config_pi_4b ./.config
           make defconfig
           ls -la
 
