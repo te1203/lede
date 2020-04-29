@@ -22,7 +22,7 @@ jobs:
 
   build:
 
-    name: Build OpenWrt and release
+    name: Build Lede for Pi-4B
     runs-on: ubuntu-18.04
 
     steps:

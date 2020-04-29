@@ -22,7 +22,7 @@ jobs:
 
   build:
 
-    name: Build OpenWrt and release
+    name: Build Lede for NewWifi D2
     runs-on: ubuntu-18.04
 
     steps:
