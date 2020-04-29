@@ -7,7 +7,7 @@
 # <https://github.com/KFERMercer/OpenWrt-CI>
 # 
 
-name: OpenWrt-NewWifi-D2-Firmware
+name: OpenWrt-NewWifi-Pi-4B-Firmware
 
 on:
   push:
@@ -90,5 +90,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@master
         with:
-          name: OpenWrt NewWifi D2 firmware
+          name: OpenWrt NewWifi Pi-4B firmware
           path: ./bin/targets/
